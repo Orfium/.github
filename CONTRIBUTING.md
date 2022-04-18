@@ -27,7 +27,7 @@ Congratulations :tada::tada:
 First, you should install the (dev) requirements of the project. Usually, it's a file called `requirements_dev.txt`. The pre-commit requirement should be included there.  
 Next, make sure to [install "pre-commit"](https://pre-commit.com/#3-install-the-git-hook-scripts) locally. Running `pre-commit install` should be enough.
 ### Add your change locally
-1. Create a branch from master(make sure you pull the latest changes). A good convention for the branch name is to incude the Jira ticket eg. "QA-17/create-new-functionality".
+1. Create a branch from master(make sure you pull the latest changes). A good convention for the branch name is to include the Jira ticket eg. "QA-17/create-new-functionality".
 2. After coding your changes create one or more commits. The commit messages should follow the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) format. Each commit should trigger the "pre-commit" checks. If it doesn't there is something wrong with the configuration.
 3. In case the "pre-commit" hooks made any changes(autofixes) you need to re-add the changed files (`git add <file>`) and commit again.
 4. Once you're finished push your local branch to the remote repository with `git push origin <branch-name>`
@@ -40,3 +40,30 @@ Usually, there are scripts that auto-assign some reviewers. You should **always*
 - Please test your changes both locally and on Jenkins (using the test pipelines) before asking for a review. 
 
 You're good to go! 
+
+---
+
+# BackEnd
+### Setup
+If the application of your project is dockerized there should be a Makefile that has the necessary commands to build and run the application, run the tests and pre-commit checks.
+If there is no Makefile in the project, check out the template Makefile [here](https://github.com/Orfium/drf-template/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/Makefile).
+
+Otherwise, you should setup a virtual environment and install the dev requirements of the project. Usually, it's a file called `requirements_dev.txt` or `requirements/local.txt`. The pre-commit requirement should be included there.  
+Next, make sure to [install "pre-commit"](https://pre-commit.com/#3-install-the-git-hook-scripts) locally. Running `pre-commit install` should be enough.
+
+### Add your change locally
+1. Create a branch from develop(make sure you pull the latest changes). A good convention for the branch name is to include the Jira ticket id eg. "BEC-134/create-new-functionality".
+2. After making your changes create one or more commits. The commit messages should follow the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) format. Each commit should trigger the "pre-commit" checks. If it doesn't there is something wrong with the configuration.
+3. In case the "pre-commit" hooks made any changes(autofixes) you need to re-add the changed files (`git add <file>`) and commit again.
+4. Make sure that you create at least one test for the changes that you've done and that all unittests pass.
+5. Once you're finished push your local branch to the remote repository with `git push origin <branch-name>`.
+
+### Pull Request
+Go to the GitHub repository and open a pull request.  
+Usually, there are scripts that auto-assign some reviewers. You should **always** choose as assignees the ones that are more relevant to your changes (eg. have good knowledge of the specific framework, have worked again on something similar, know the codebase well, etc.)
+- Please fill out the description from the PR template provided.
+- Don't forget to link any JIRA ticket on the PR header or any [GitHub issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) - if you are solving one.
+- Please test your changes both locally and on the review app deployed on pull request before asking for a review.
+- If your CI triggers the QA's acceptance tests, make sure that they pass. If not, check the Allure report of the test run.
+
+:thumbsup: :thumbsup:
